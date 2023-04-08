@@ -1,0 +1,11 @@
+.form {
+  position: fixed;
+  top: calc((100vh - 330px)/2);
+  left: calc((100vw - 430px)/2);
+}
+
+@media screen and (max-width: 767px) {
+  .form {
+    left: calc((100vw - 282px)/2);
+  }
+}

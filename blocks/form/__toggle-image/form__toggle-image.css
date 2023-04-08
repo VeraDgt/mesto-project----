@@ -1,0 +1,18 @@
+.form__toggle-image {
+  display: block;
+  margin-left: auto;
+  padding-bottom: 8px;
+}
+
+.form__toggle-image:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 767px) {
+  .form__toggle-image {
+    width: 20px;
+    height: 20px;
+    padding-bottom: 16px;
+  }
+}

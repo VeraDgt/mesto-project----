@@ -1,0 +1,11 @@
+.card__heart-icon {
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.card__heart-icon:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

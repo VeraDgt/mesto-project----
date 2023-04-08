@@ -1,0 +1,9 @@
+.form__toggle {
+  width: 470px;
+}
+
+@media screen and (max-width: 767px) {
+  .form__toggle {
+    width: 282px;
+  }
+}
