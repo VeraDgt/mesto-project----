@@ -9,7 +9,7 @@
   opacity: 0.6;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 530px) {
   .form__toggle-image {
     width: 20px;
     height: 20px;
