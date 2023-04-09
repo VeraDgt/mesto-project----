@@ -1,10 +1,20 @@
 .profile__details {
   margin-left: 30px;
+  display: grid;
+  grid-template-areas: 
+  "name edit"
+  "description edit";
+  align-items: center;
 }
 
 
 @media screen and (max-width: 767px) {
   .profile__details {
-    margin: 22px 0 36px;
+    margin: 26px 0 33px;
+    grid-template-areas: 
+  "name edit"
+  "description description";
+    justify-content: center;
+    position: relative;
   }
 }

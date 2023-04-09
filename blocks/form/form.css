@@ -1,11 +1,11 @@
 .form {
-  position: fixed;
-  top: calc((100vh - 330px)/2);
-  left: calc((100vw - 430px)/2);
+  padding-top: 103px;
+  padding-left: 39px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 510px) {
   .form {
-    left: calc((100vw - 282px)/2);
+    padding-top: 42px;
+    padding-left: 0;
   }
 }
