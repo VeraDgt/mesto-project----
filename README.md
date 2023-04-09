@@ -7,5 +7,6 @@
 
 - БЭМ
 - Flex
+- Grid
 
 Gh-pages: https://veradgt.github.io/short-n-sweet/

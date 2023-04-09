@@ -2,7 +2,7 @@
   width: 470px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 510px) {
   .form__toggle {
     width: 282px;
   }
