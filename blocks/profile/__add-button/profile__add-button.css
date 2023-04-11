@@ -16,11 +16,14 @@
 @media screen and (max-width: 767px) {
   .profile__add-button {
     width: 282px;
+<<<<<<< HEAD
   }
 }
 
 @media screen and (max-width: 350px) {
   .profile__add-button {
     width: 254px;
+=======
+>>>>>>> 37b7b9078a89c45cdcadc5412d0135ef1c9c5fbb
   }
 }

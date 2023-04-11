@@ -17,7 +17,11 @@
   .profile {
   display: block;
   height: 284px;
+<<<<<<< HEAD
   margin: 42px auto 36px;
+=======
+  margin: 42px 0 36px;
+>>>>>>> 37b7b9078a89c45cdcadc5412d0135ef1c9c5fbb
   text-align: center;
   }
 }

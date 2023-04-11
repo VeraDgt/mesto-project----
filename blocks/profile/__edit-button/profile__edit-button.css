@@ -18,11 +18,14 @@
     height: 18px;
     margin-left: 10px;
     position: absolute;
+<<<<<<< HEAD
   }
 }
 
 @media screen and (max-width: 350px) {
   .profile__edit-button {
     margin-left: 0;
+=======
+>>>>>>> 37b7b9078a89c45cdcadc5412d0135ef1c9c5fbb
   }
 }

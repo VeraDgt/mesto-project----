@@ -1,11 +1,5 @@
 .profile__details {
   margin-left: 30px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: 
-  "name edit"
-  "description edit";
-  align-items: center;
 }
 
 
