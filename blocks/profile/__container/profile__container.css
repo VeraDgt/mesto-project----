@@ -1,11 +1,20 @@
 .profile__container {
   display: flex;
   align-items: center;
+  max-width: 690px;
+}
+
+@media screen and (max-width: 942px) {
+  .profile__container {
+    max-width: 400px;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .profile__container {
     display: block;
     text-align: center;
+    margin: 0 auto;
+    max-width: 234px;
   }
 }

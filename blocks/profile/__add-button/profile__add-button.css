@@ -18,3 +18,9 @@
     width: 282px;
   }
 }
+
+@media screen and (max-width: 350px) {
+  .profile__add-button {
+    width: 254px;
+  }
+}
