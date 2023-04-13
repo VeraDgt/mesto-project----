@@ -1,7 +1,6 @@
 .profile {
   display: flex;
   max-width: 880px;
-  height: 120px;
   margin: 40px auto 50px;
   justify-content: space-between;
   align-items: center;
@@ -9,9 +8,8 @@
 
 @media screen and (max-width: 767px) {
   .profile {
-  display: block;
-  height: 284px;
-  margin: 42px auto 36px;
-  text-align: center;
+    display: block;
+    margin: 42px auto 36px;
+    text-align: center;
   }
 }

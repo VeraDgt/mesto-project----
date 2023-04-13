@@ -9,6 +9,7 @@
   font-size: 18px;
   line-height: 21.78px;
   margin-top: 46px;
+  border: none;
 }
 
 .form__button:hover {
@@ -16,11 +17,7 @@
   opacity: 0.8;
 }
 
-<<<<<<< HEAD
 @media screen and (max-width: 530px) {
-=======
-@media screen and (max-width: 510px) {
->>>>>>> 37b7b9078a89c45cdcadc5412d0135ef1c9c5fbb
   .form__button {
     font-size: 14px;
     line-height: 16.94px;

@@ -3,13 +3,10 @@
   background-repeat: no-repeat;
   background-position: center;
   width: 22px;
-  padding-left: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
+  flex-shrink: 0;
 }
 
 .card__heart-icon:hover {
   cursor: pointer;
-  opacity: 0.6;
+  opacity: 0.5;
 }

@@ -1,7 +1,8 @@
 .form__toggle-image {
-  display: block;
-  margin-left: auto;
-  padding-bottom: 8px;
+  position: absolute;
+  top: -32px;
+  right: -32px;
+  
 }
 
 .form__toggle-image:hover {
@@ -13,6 +14,7 @@
   .form__toggle-image {
     width: 20px;
     height: 20px;
-    padding-bottom: 16px;
+    top: -36px;
+    right: 0;
   }
 }
