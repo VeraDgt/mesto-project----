@@ -1,6 +1,5 @@
 .card__name {
   display: flex;
-  width: 262px;
-  margin: auto;
+  padding: 25px 10px 26px 21px;
   justify-content: space-between;
 }
