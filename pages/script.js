@@ -63,4 +63,27 @@ const initialCards = [
   }
 ]; 
 
+// let cardsContainer = document.querySelector('.cards__container');
+// let addButton = profile.querySelector('.profile__add-button');
 
+// function addCard() {
+//   let cardImage = "";
+//   let cardTitle = "";
+
+//   cardsContainer.insertAdjacentHTML('beforeend', `
+//   <li class="card">
+//   <img class="card__image" src="images/karachaevsk.jpg">
+//   <div class="card__name">
+//     <h2 class="card__title">${cardTitle.value}</h2>
+//     <button type="button" class="button card__heart-icon card__heart-icon_checked"></button>
+//   </div>
+// </li>
+//   `);
+
+// }
+
+// addButton.addEventListener('click', function() {
+//   popup.classList.add('popup_opened');
+// });
+
+// console.dir(addButton);
