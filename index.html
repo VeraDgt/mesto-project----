@@ -31,6 +31,7 @@
         <ul class="cards__container list">
           <li class="card">
             <img class="card__image" src="images/karachaevsk.jpg" alt="Сентинский храм в Карачаево-Черкессии.">
+            <button type="button" class="button card__delete-button"></button>
             <div class="card__name">
               <h2 class="card__title">Карачаевск</h2>
               <button type="button" class="button card__heart-icon card__heart-icon_checked"></button>
@@ -38,6 +39,7 @@
           </li>
           <li class="card">
             <img class="card__image" src="images/elbrus.jpg" alt="Вид на гору Эльбрус.">
+            <button type="button" class="button card__delete-button"></button>
             <div class="card__name">
               <h2 class="card__title">Гора Эльбрус</h2>
               <button type="button" class="button card__heart-icon"></button>
@@ -46,6 +48,7 @@
           <li class="card">
             <img class="card__image" src="images/dombay.jpg"
               alt="Белалакая. Вершина западной части главного хребта Большого Кавказа.">
+            <button type="button" class="button card__delete-button"></button>
             <div class="card__name">
               <h2 class="card__title">Домбай</h2>
               <button type="button" class="button card__heart-icon"></button>
@@ -53,6 +56,7 @@
           </li>
           <li class="card">
             <img class="card__image" src="images/elbrus.jpg" alt="Вид на гору Эльбрус.">
+            <button type="button" class="button card__delete-button"></button>
             <div class="card__name">
               <h2 class="card__title">Гора Эльбрус</h2>
               <button type="button" class="button card__heart-icon"></button>
@@ -61,6 +65,7 @@
           <li class="card">
             <img class="card__image" src="images/dombay.jpg"
               alt="Белалакая. Вершина западной части главного хребта Большого Кавказа.">
+            <button type="button" class="button card__delete-button"></button>
             <div class="card__name">
               <h2 class="card__title">Домбай</h2>
               <button type="button" class="button card__heart-icon"></button>
@@ -68,6 +73,7 @@
           </li>
           <li class="card">
             <img class="card__image" src="images/karachaevsk.jpg" alt="Сентинский храм в Карачаево-Черкессии.">
+            <button type="button" class="button card__delete-button"></button>
             <div class="card__name">
               <h2 class="card__title">Карачаево-Черкессия</h2>
               <button type="button" class="button card__heart-icon"></button>
@@ -82,7 +88,7 @@
     <div class="popup">
       <div class="popup__content-container">
         <button type="button" class="button popup__toggle" aria-label="Закрыть форму"></button>
-        <form class="form" action="URL">
+        <form class="form hidden" action="URL">
           <h2 class="form__heading">Редактировать профиль</h2>
           <fieldset class="form__input-container">
             <input class="form__item" type="text" name="user-name">
@@ -90,6 +96,17 @@
             <button type="submit" class="form__button">Сохранить</button>
           </fieldset>
         </form>
+        <form class="form hidden" action="URL">
+          <h2 class="form__heading">Новое место</h2>
+          <fieldset class="form__input-container">
+            <input class="form__item" type="text" name="card-title" placeholder="Название">
+            <input class="form__item" type="text" name="card-link" placeholder="Ссылка на картинку">
+            <button type="submit" class="form__button">Сохранить</button>
+          </fieldset>
+        </form>
+        <figure class="popup__image-wrapper"><img class="popup__image" src="images/karachaevsk.jpg">
+          <figcaption class="popup__image-caption">Карачаевск</figcaption>
+        </figure>
       </div>
     </div>
   </div>
