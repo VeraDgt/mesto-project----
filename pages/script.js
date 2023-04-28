@@ -1,5 +1,3 @@
-// editProfile();
-
 const profile = document.querySelector('.profile');
 const profileEditButton = profile.querySelector('.profile__edit-button');
 let profileName = profile.querySelector('.profile__name');
@@ -7,25 +5,29 @@ let profileDescription = profile.querySelector('.profile__description');
 const popup = document.querySelector('.popup');
 const popupToggle = popup.querySelector('.popup__toggle');
 
-const formElement = document.querySelector('.form');
-let formItems = formElement.querySelectorAll('.form__item');
-let formHeading = formElement.querySelector('.form__heading');
+const editForm = document.querySelector('.form-edit');
+let formItems = editForm.querySelectorAll('.form__item');
+
 const nameInput = formItems[0];
 const jobInput = formItems[1];
-const cardName = formItems[2];
-const cardImage = formItems[3];
 
+function editFormOpen() {
+  nameInput.value = profileName.innerHTML;
+  jobInput.value = profileDescription.innerHTML;
+  popup.classList.add('popup_opened');
+  editForm.classList.remove('hidden');
+  addForm.classList.add('hidden');
+  imgOpened.classList.add('hidden');
+}
 
+profileEditButton.addEventListener('click',editFormOpen);
 
+// закрытие попапа
 function popupClose() {
   popup.classList.remove('popup_opened');
 }
 
 popupToggle.addEventListener('click', popupClose);
-
-
-
-
 
 // редактирование профиля
 
@@ -34,13 +36,60 @@ function handleFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   popupClose();
-  return;
-
 }
 
-formElement.addEventListener('submit', handleFormSubmit);
+editForm.addEventListener('submit', handleFormSubmit);
 
-//карточки
+// добавление карточки
+const cardsContainer = document.querySelector('.cards__container');
+const addButton = profile.querySelector('.profile__add-button');
+const addForm = document.querySelector('.form-add');
+
+
+const listItem = document.createElement('li');
+listItem.classList.add('card');
+const img = document.createElement('img');
+img.classList.add('card__image');
+// img.src = cardImage.value;
+const cardTitleContainer = document.createElement('div');
+cardTitleContainer.classList.add('card__name');
+const cardTitle = document.createElement('h2');
+cardTitle.classList.add('card__title');
+// cardTitle.textContent = cardName.value;
+const likeButton = document.createElement('button');
+likeButton.classList.add('button');
+likeButton.classList.add('card__heart-icon');
+// likeButton.type.add('button');
+
+// const imageElement = cardsContainer.createElement('img');
+// const textItem = cardsContainer.createTextNode('Hello, world');
+
+
+addButton.addEventListener('click', function() {
+  popup.classList.add('popup_opened');
+  editForm.classList.add('hidden');
+  imgOpened.classList.add('hidden');
+  addForm.classList.remove('hidden');
+});
+
+// просмотр картинки
+
+const cardImages = cardsContainer.querySelector('.card__image');
+console.log(cardImages);
+
+let imgOpened = document.querySelector('.popup__image-wrapper');
+
+
+cardImages.addEventListener('click', function() {
+  popup.classList.add('popup_opened');
+  editForm.classList.add('hidden');
+  addForm.classList.add('hidden');
+  imgOpened.classList.remove('hidden');
+});
+
+// cardsContainer.addEventListener('click', showImage);
+
+//загрузка карточек
 
 const initialCards = [
   {
@@ -69,70 +118,25 @@ const initialCards = [
   }
 ]; 
 
-// первоначальная загрузка карточек
-const cardsContainer = document.querySelector('.cards__container');
+const initialCardsArray = Object.entries(initialCards);
 
-function addInitialCards() {
-for (let i = 0; i <= initialCards.length; i++) {
-  console.log(initialCards[i]);
+// initialCardsArray.forEach(([key, value]) => {
+//   console.log(key); // 'one'
+//   console.log(value); 1
+// });
+
+// первоначальная загрузка карточек
+
+//   initialCardsArray.forEach(([link, value]) => {
 //   cardsContainer.insertAdjacentHTML('beforeend', `
 //   <li class="card">
-//   <img class="card__image" src="${initialCards[i].link}">
+//   <img class="card__image" src="${initialCards[i]link}">
 //   <div class="card__name">
-//     <h2 class="card__title">${initialCards[i].name}</h2>
+//     <h2 class="card__title">${initialCards[i]name}</h2>
 //     <button type="button" class="button card__heart-icon card__heart-icon_checked"></button>
 //   </div>
-// </li>
-//   `);
-}
-};
+// </li>`
+//   )
+// });
 
-addInitialCards(initialCards);
-
-// добавление карточки
-const addButton = profile.querySelector('.profile__add-button');
-
-const listItem = document.createElement('li');
-listItem.classList.add('card');
-const img = document.createElement('img');
-img.classList.add('card__image');
-img.src = cardImage.value;
-const cardTitleContainer = document.createElement('div');
-cardTitleContainer.classList.add('card__name');
-const cardTitle = document.createElement('h2');
-cardTitle.classList.add('card__title');
-cardTitle.textContent = cardName.value;
-const likeButton = document.createElement('button');
-likeButton.classList.add('button');
-likeButton.classList.add('card__heart-icon');
-// likeButton.type.add('button');
-
-// const imageElement = cardsContainer.createElement('img');
-// const textItem = cardsContainer.createTextNode('Hello, world');
-
-
-addButton.addEventListener('click', function() {
-  popup.classList.add('popup_opened');
-  formElement.classList.remove('hidden');
-  formHeading.innerHTML = 'Новое место';
-  nameInput.classList.add('hidden');
-  jobInput.classList.add('hidden');
-  cardTitle.classList.remove('hidden');
-  cardImage.classList.remove('hidden');
-  return;
-});
-
-// просмотр картинки
-
-const cardImages = cardsContainer.querySelectorAll('.card__image');
-const cardImgLink = this.currentSrc;
-
-
-function showImage() {
-  formElement.classList.add('hidden');
-}
-console.log(cardImgLink);
-
-cardsContainer.addEventListener('click', showImage());
-
-// console.dir(addButton);
+// addInitialCards(initialCards);
