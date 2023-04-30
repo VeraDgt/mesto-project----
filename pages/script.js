@@ -76,6 +76,9 @@ newCard.querySelector('.card__title').textContent = newPlaceTitleValue;
 newCard.querySelector('.card__heart-icon').addEventListener('click', function(evt) {
   evt.target.classList.toggle('card__heart-icon_checked');
 });
+newCard.querySelector('.card__delete-button').addEventListener('click', function(evt) {
+  evt.target.parentElement.remove();
+});
 
 cardsContainer.prepend(newCard);
 }
@@ -106,16 +109,6 @@ function showImage (eventTarget) {
   cardAddForm.classList.add('hidden');
   imgOpened.classList.remove('hidden');
 };
-
-//удаление карточки
-const deleteCardButtons = cardsContainer.querySelectorAll('.card__delete-button');
-
-// deleteCardButtons.addEventListener('click', function() {
-//   const cardsToDelete = cardsContainer.querySelectorAll('.card');
-//   cardToDelete =
-//   deleteCardButtons.closest(cardsToDelete);
-//   cardToDelete.remove();
-// });
 
 //загрузка карточек
 
