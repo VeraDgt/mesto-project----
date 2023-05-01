@@ -4,6 +4,7 @@ let profileName = profile.querySelector('.profile__name');
 let profileDescription = profile.querySelector('.profile__description');
 const popup = document.querySelector('.popup');
 const popupToggle = popup.querySelector('.popup__toggle');
+const imgOpened = document.querySelector('.popup__image-wrapper');
 
 const formEdit = document.querySelector('.form-edit');
 let formItems = formEdit.querySelectorAll('.form__item');
@@ -11,22 +12,28 @@ let formItems = formEdit.querySelectorAll('.form__item');
 const nameInput = formItems[0];
 const jobInput = formItems[1];
 
-function openFormEdit() {
+function openPopup(formElement) {
+  popup.classList.add('popup_opened');
+  popupToggle.classList.remove('hidden');
+  formElement.classList.remove('hidden');
+  popup.style.backgroundColor = (formElement = imgOpened ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.9)');
+};
+
+profileEditButton.addEventListener('click', function() {
   nameInput.value = profileName.innerHTML;
   jobInput.value = profileDescription.innerHTML;
-  popup.classList.add('popup_opened');
-  popup.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
-  formEdit.classList.remove('hidden');
-  cardAddForm.classList.add('hidden');
-  imgOpened.classList.add('hidden');
-}
-
-profileEditButton.addEventListener('click',openFormEdit);
+  openPopup(formEdit);
+});
 
 // закрытие попапа
 function closePopup() {
+  const popupElements = Array.from(popup.querySelector('.popup__content-container').children);
+
+  popupElements.forEach((item) => {
+    item.classList.add('hidden');
+  }); 
   popup.classList.remove('popup_opened');
-}
+};
 
 popupToggle.addEventListener('click', closePopup);
 
@@ -46,11 +53,7 @@ cardAddForm.addEventListener('submit', handleFormSubmit);
 cardAddButton.addEventListener('click', function() {
   newPlaceTitle.value = '';
   newPlaceImage.value = '';
-  popup.classList.add('popup_opened');
-  popup.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
-  formEdit.classList.add('hidden');
-  imgOpened.classList.add('hidden');
-  cardAddForm.classList.remove('hidden');
+  openPopup(cardAddForm);
 });
 
 // обработка submit
@@ -79,7 +82,7 @@ function addCard(newPlaceImageValue, newPlaceTitleValue) {
 newCard.querySelector('.card__delete-button').addEventListener('click', function(evt) {
   evt.target.parentElement.remove();
 });
-
+  
 cardsContainer.prepend(newCard);
 };
 
@@ -128,29 +131,32 @@ initialCards.forEach(function (el) {
 });
 
 
-// просмотр картинки
+//просмотр картинки
+function showImage (src, title) {
+  imgOpened.querySelector('popup__image').src = src;
+  imgOpened.querySelector('popup__image-caption').innerHTML = title;
+  openPopup(imgOpened);
+};
 
-const currentCardImage = cardsContainer.querySelector('.card__image');
-const currentCardTitle = cardsContainer.querySelector('.card__title');
+const images = cardsContainer.querySelectorAll('.card__image');
+const cardTitles = cardsContainer.querySelectorAll('.card__title');
 
-currentCardImage.addEventListener('click', function(evt) {
-  const eventTarget = evt.target;
-  showImage(eventTarget);
-});
+let imgSrc;
+let imgTitle;
+
+// images.forEach((img) => {
+//   img.addEventListener('click', (elem) => {
+//     imgSrc = elem.target.src;
+//     imgTitle = elem.target.nextElementSibling.firstElementChild.innerHTML;
+//     return imgSrc, imgTitle;
+//   });
+//   showImage (imgSrc, imgTitle);
+// });
+
+// currentCardImage.addEventListener('click', function(evt) {
+//   const eventTarget = evt.target;
+//   showImage(eventTarget);
+// });
 // image = currentCardImage.currentSrc;
 // title = currentCardTitle.innerHTML;
 
-
-const imgOpened = document.querySelector('.popup__image-wrapper');
-let popupImage = imgOpened.querySelector('popup__image');
-let popupImageCaption = imgOpened.querySelector('popup__image-caption');
-
-function showImage (eventTarget) {
-  // popupImage.src = currentCardImage.closest('.card__image').src;
-  // popupImageCaption.innerHTML = currentCardTitle.closest('.card__name').innerHTML;
-  popup.classList.add('popup_opened');
-  popup.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'; 
-  formEdit.classList.add('hidden');
-  cardAddForm.classList.add('hidden');
-  imgOpened.classList.remove('hidden');
-};
