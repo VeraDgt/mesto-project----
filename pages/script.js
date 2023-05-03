@@ -16,12 +16,12 @@ function openPopup(formElement) {
   popup.classList.add('popup_opened');
   popupToggle.classList.remove('hidden');
   formElement.classList.remove('hidden');
-  popup.style.backgroundColor = (formElement = imgOpened ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.9)');
+  popup.style.backgroundColor = (formElement == imgOpened ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.5)');
 };
 
 profileEditButton.addEventListener('click', function() {
-  nameInput.value = profileName.innerHTML;
-  jobInput.value = profileDescription.innerHTML;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
   openPopup(formEdit);
 });
 
@@ -71,17 +71,23 @@ function handleFormSubmit(evt) {
   }
 }
 
-function addCard(newPlaceImageValue, newPlaceTitleValue) {
+function addCard(link, name) {
   const cardTemplate = cardsContainer.querySelector('#card').content;
   const newCard = cardTemplate.querySelector('.card').cloneNode(true);
-  newCard.querySelector('.card__image').src = newPlaceImageValue;
-  newCard.querySelector('.card__title').textContent = newPlaceTitleValue;
+  newCard.querySelector('.card__image').src = link;
+  newCard.querySelector('.card__title').textContent = name;
   newCard.querySelector('.card__heart-icon').addEventListener('click', function(evt) {
   evt.target.classList.toggle('card__heart-icon_checked');
 });
 newCard.querySelector('.card__delete-button').addEventListener('click', function(evt) {
   evt.target.parentElement.remove();
 });
+newCard.querySelector('.card__image').addEventListener('click', function(evt) {
+  imgOpened.querySelector('.popup__image').src = evt.target.src;
+  imgOpened.querySelector('.popup__image-caption').textContent = evt.target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
+  openPopup(imgOpened);
+});
+
   
 cardsContainer.prepend(newCard);
 };
@@ -116,47 +122,5 @@ const initialCards = [
 ]; 
 
 initialCards.forEach(function (el) {
-  const cardTemplate = cardsContainer.querySelector('#card').content;
-  const newCard = cardTemplate.querySelector('.card').cloneNode(true);
-  newCard.querySelector('.card__image').src = el.link;
-  newCard.querySelector('.card__title').textContent = el.name;
-  newCard.querySelector('.card__heart-icon').addEventListener('click', function(evt) {
-    evt.target.classList.toggle('card__heart-icon_checked');
-  });
-  newCard.querySelector('.card__delete-button').addEventListener('click', function(evt) {
-    evt.target.parentElement.remove();
-  });
-  
-  cardsContainer.prepend(newCard);
+  addCard(el.link, el.name);
 });
-
-
-//просмотр картинки
-function showImage (src, title) {
-  imgOpened.querySelector('popup__image').src = src;
-  imgOpened.querySelector('popup__image-caption').innerHTML = title;
-  openPopup(imgOpened);
-};
-
-const images = cardsContainer.querySelectorAll('.card__image');
-const cardTitles = cardsContainer.querySelectorAll('.card__title');
-
-let imgSrc;
-let imgTitle;
-
-// images.forEach((img) => {
-//   img.addEventListener('click', (elem) => {
-//     imgSrc = elem.target.src;
-//     imgTitle = elem.target.nextElementSibling.firstElementChild.innerHTML;
-//     return imgSrc, imgTitle;
-//   });
-//   showImage (imgSrc, imgTitle);
-// });
-
-// currentCardImage.addEventListener('click', function(evt) {
-//   const eventTarget = evt.target;
-//   showImage(eventTarget);
-// });
-// image = currentCardImage.currentSrc;
-// title = currentCardTitle.innerHTML;
-
