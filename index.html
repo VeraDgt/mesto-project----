@@ -17,7 +17,9 @@
     <main class="main">
       <section class="profile">
         <div class="profile__container">
-          <div class="profile__avatar"></div>
+          <div class="profile__avatar">
+            <button class="button profile__avatar-edit-button"></button>
+          </div>
           <div class="profile__details">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__description">Исследователь океана</p>
@@ -48,12 +50,15 @@
     <div class="popup" id="popup_edit-profile">
       <div class="popup__content-container">
         <button type="button" class="button popup__toggle" aria-label="Закрыть форму"></button>
-        <form class="form form-edit" action="URL">
+        <form class="form form-edit" name="profile" action="URL" novalidate>
           <h2 class="form__heading">Редактировать профиль</h2>
           <fieldset class="form__input-container">
-            <input class="form__item" type="text" placeholder="Имя" name="user-name">
-            <input class="form__item" type="text" placeholder="Вид деятельности" name="user-description">
-            <button type="submit" class="form__button">Сохранить</button>
+            <input class="form__item" type="text" placeholder="Имя" name="name" minlength="2" maxlength="40" required>
+            <div class="form__error 1"></div>
+            <input class="form__item" type="text" placeholder="Вид деятельности" name="description" minlength="2"
+              maxlength="200" required>
+            <div class="form__error 2"></div>
+            <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
           </fieldset>
         </form>
       </div>
@@ -61,13 +66,27 @@
     <div class="popup" id="popup_add-card">
       <div class="popup__content-container">
         <button type="button" class="button popup__toggle" aria-label="Закрыть форму"></button>
-        <form class="form form-add" action="URL">
+        <form class="form form-add" name="place" action="URL" novalidate>
           <h2 class="form__heading">Новое место</h2>
           <fieldset class="form__input-container">
-            <input class="form__item" type="text" name="card-title" placeholder="Название" required>
-            <input class="form__item" type="text" name="card-link" placeholder="Ссылка на картинку" required>
-            <button type="submit" class="form__button">Сохранить</button>
+            <input class="form__item" type="text" name="title" placeholder="Название" minlength="2" maxlength="30"
+              required>
+            <div class="form__error 3"></div>
+            <input class="form__item" type="url" name="link" placeholder="Ссылка на картинку" required>
+            <div class="form__error 4"></div>
+            <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
           </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="popup_edit-avatar">
+      <div class="popup__content-container">
+        <button type="button" class="button popup__toggle" aria-label="Закрыть форму"></button>
+        <form class="form form-edit-avatar" name="avatar" action="URL" novalidate>
+          <h2 class="form__heading">Обновить аватар</h2>
+          <input class="form__item" type="url" name="avatarLink" placeholder="Ссылка на фото" required>
+          <div class="form__error 5"></div>
+          <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
         </form>
       </div>
     </div>

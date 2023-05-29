@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+.form:hover {
+  cursor: auto;
+}
+
 @media screen and (max-width: 530px) {
   .form {
     width: 282px;
