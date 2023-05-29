@@ -15,11 +15,50 @@ const nameInput = formEditProfile.name;
 const jobInput = formEditProfile.description;
 const newPlaceTitle = cardAddForm.title;
 const newPlaceImage = cardAddForm.link;
-const newAvatar = formEditAvatar.avatarLink;
+const newAvatar = formEditAvatar.avatar;
+
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('form__input_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('form__error_active');
+};
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('form__input_error');
+  errorElement.classList.remove('form__error_active');
+  errorElement.textContent = '';
+};
+
+const isValid = (formElement, inputElement) => {
+  if (!formInput.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+      isValid(formElement, inputElement)
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.form'));
+  formList.forEach((formElement) => {
+    setEventListeners(formElement);
+  });
+};
+
+enableValidation(); 
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-
 };
 
 profileEditButton.addEventListener('click', function() {
@@ -163,9 +202,6 @@ document.addEventListener('click', clickOnOverlayHandler);
 
 //валидация форм
 
-formEditProfile.addEventListener('input', errorHandler);
-cardAddForm.addEventListener('input', errorHandler);
-formEditAvatar.addEventListener('input', errorHandler);
 
 function setSubmitButtonState(isFormValid) {
   if (isFormValid) {submitButton.removeAttribute('disabled');

@@ -53,11 +53,12 @@
         <form class="form form-edit" name="profile" action="URL" novalidate>
           <h2 class="form__heading">Редактировать профиль</h2>
           <fieldset class="form__input-container">
-            <input class="form__item" type="text" placeholder="Имя" name="name" minlength="2" maxlength="40" required>
-            <div class="form__error 1"></div>
-            <input class="form__item" type="text" placeholder="Вид деятельности" name="description" minlength="2"
-              maxlength="200" required>
-            <div class="form__error 2"></div>
+            <input id="name" class=" form__item" type="text" placeholder="Имя" name="name" minlength="2" maxlength="40"
+              required>
+            <span class="form__error name-error"></span>
+            <input id="description" class="form__item" type="text" placeholder="Вид деятельности" name="description"
+              minlength="2" maxlength="200" required>
+            <span class="form__error description-error"></span>
             <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
           </fieldset>
         </form>
@@ -69,11 +70,11 @@
         <form class="form form-add" name="place" action="URL" novalidate>
           <h2 class="form__heading">Новое место</h2>
           <fieldset class="form__input-container">
-            <input class="form__item" type="text" name="title" placeholder="Название" minlength="2" maxlength="30"
-              required>
-            <div class="form__error 3"></div>
-            <input class="form__item" type="url" name="link" placeholder="Ссылка на картинку" required>
-            <div class="form__error 4"></div>
+            <input id="title" class="form__item" type="text" name="title" placeholder="Название" minlength="2"
+              maxlength="30" required>
+            <span class="form__error title-error"></span>
+            <input id="link" class="form__item" type="url" name="link" placeholder="Ссылка на картинку" required>
+            <span class="form__error link-error"></span>
             <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
           </fieldset>
         </form>
@@ -84,8 +85,8 @@
         <button type="button" class="button popup__toggle" aria-label="Закрыть форму"></button>
         <form class="form form-edit-avatar" name="avatar" action="URL" novalidate>
           <h2 class="form__heading">Обновить аватар</h2>
-          <input class="form__item" type="url" name="avatarLink" placeholder="Ссылка на фото" required>
-          <div class="form__error 5"></div>
+          <input id="avatar" class="form__item" type="url" name="avatar" placeholder="Ссылка на фото" required>
+          <span class="form__error avatar-error"></span>
           <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
         </form>
       </div>
