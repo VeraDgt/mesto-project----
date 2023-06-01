@@ -54,12 +54,16 @@
           <h2 class="form__heading">Редактировать профиль</h2>
           <fieldset class="form__input-container">
             <input id="name" class=" form__item" type="text" placeholder="Имя" name="name" minlength="2" maxlength="40"
+              pattern="^[a-zA-ZА-Яа-яЁё\-\s]+$"
+              data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы."
               required>
             <span class="form__error name-error"></span>
             <input id="description" class="form__item" type="text" placeholder="Вид деятельности" name="description"
-              minlength="2" maxlength="200" required>
+              minlength="2" maxlength="200" pattern="^[a-zA-ZА-Яа-яЁё\-\s]+$"
+              data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы."
+              required>
             <span class="form__error description-error"></span>
-            <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
+            <button type="submit" class="form__button" disabled>Сохранить</button>
           </fieldset>
         </form>
       </div>
@@ -71,11 +75,13 @@
           <h2 class="form__heading">Новое место</h2>
           <fieldset class="form__input-container">
             <input id="title" class="form__item" type="text" name="title" placeholder="Название" minlength="2"
-              maxlength="30" required>
+              maxlength="30" pattern="^[a-zA-ZА-Яа-яЁё\-\s]+$"
+              data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы."
+              required>
             <span class="form__error title-error"></span>
             <input id="link" class="form__item" type="url" name="link" placeholder="Ссылка на картинку" required>
             <span class="form__error link-error"></span>
-            <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
+            <button type="submit" class="form__button" disabled>Сохранить</button>
           </fieldset>
         </form>
       </div>
@@ -87,7 +93,7 @@
           <h2 class="form__heading">Обновить аватар</h2>
           <input id="avatar" class="form__item" type="url" name="avatar" placeholder="Ссылка на фото" required>
           <span class="form__error avatar-error"></span>
-          <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
+          <button type="submit" class="form__button" disabled>Сохранить</button>
         </form>
       </div>
     </div>

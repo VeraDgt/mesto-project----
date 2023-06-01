@@ -25,6 +25,7 @@
 @import url(../blocks/form/__error/form__error.css);
 @import url(../blocks/form/__error/_active/form__error_active.css);
 @import url(../blocks/form/__button/_disabled/form__button_disabled.css);
+@import url(../blocks/form/__item/_error/form__item_error.css);
 
 /*list*/
 @import url(../blocks/list/list.css);
