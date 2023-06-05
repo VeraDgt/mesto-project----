@@ -1,4 +1,5 @@
-import { openPopup } from './modal.js'
+import { openPopup } from './modal.js';
+import { initialCards } from './constants.js';
 
 const popupImage = document.querySelector('#popup_image');
 const cardsContainer = document.querySelector('.cards__container');
