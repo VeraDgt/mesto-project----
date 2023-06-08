@@ -14,13 +14,14 @@ function createCard(link, name) {
   cardImage.src = link;
   cardImage.alt = `Вид на ${name}.`
   cardTitle.textContent = name;
+
   newCard.querySelector('.card__heart-icon').addEventListener('click', function(evt) {
   evt.target.classList.toggle('card__heart-icon_checked');
-});
-newCard.querySelector('.card__delete-button').addEventListener('click', function(evt) {
+  });
+  newCard.querySelector('.card__delete-button').addEventListener('click', function(evt) {
   evt.target.parentElement.remove();
-});
-newCard.querySelector('.card__image').addEventListener('click', function() {
+  });
+  newCard.querySelector('.card__image').addEventListener('click', function() {
   popupImageImg.src = link;
   popupImageImg.alt = `Вид на ${name}.`;
   popupImageCaption.textContent = name;
