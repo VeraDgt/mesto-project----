@@ -1,11 +1,8 @@
 import { openPopup } from './modal.js';
 import { initialCards } from './constants.js';
+import { popupImage, cardsContainer, cardTemplate, popupImageImg, popupImageCaption } from './constants.js'
 
-const popupImage = document.querySelector('#popup_image');
-const cardsContainer = document.querySelector('.cards__container');
-const cardTemplate = cardsContainer.querySelector('#card').content;
-const popupImageImg = popupImage.querySelector('.popup__image');
-const popupImageCaption = popupImage.querySelector('.popup__image-caption');
+console.log(initialCards);
 
 function createCard(link, name) {
   const newCard = cardTemplate.querySelector('.card').cloneNode(true);
@@ -19,7 +16,7 @@ function createCard(link, name) {
   evt.target.classList.toggle('card__heart-icon_checked');
   });
   newCard.querySelector('.card__delete-button').addEventListener('click', function(evt) {
-  evt.target.parentElement.remove();
+    newCard.remove();
   });
   newCard.querySelector('.card__image').addEventListener('click', function() {
   popupImageImg.src = link;
