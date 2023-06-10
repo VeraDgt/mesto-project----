@@ -1,0 +1,7 @@
+.card__heart-wrapper {
+  box-sizing: border-box;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

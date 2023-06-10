@@ -1,8 +1,21 @@
 import './pages/index.css';
 import { enableValidation } from './components/validate.js';
 import { openPopup, closePopup,clickOnOverlayHandler } from './components/modal.js';
-import { addCard, createCard } from './components/card.js';
-import { profileEditButton, profileName, profileDescription, popupEditProfile, nameInput, jobInput, popupAddCard, avatarEditButton, popupEditAvatar, newAvatar, profileAvatar, newPlaceTitle, newPlaceImage, formEditAvatar, cardAddForm, cardAddButton, formEditProfile, popupList } from './components/constants.js'
+import { renderCards } from './components/card.js';
+import { profileEditButton, profileName, profileDescription, popupEditProfile, nameInput, jobInput, popupAddCard, avatarEditButton, popupEditAvatar, newAvatar, profileAvatar, newPlaceTitle, newPlaceImage, formEditAvatar, cardAddForm, cardAddButton, formEditProfile, popupList } from './components/constants.js';
+import { getUserData, updateUserData, updateCard } from './components/api.js';
+import { renderLoading } from './components/utils.js';
+
+let personId = "";
+
+Promise.all([getUserData()])
+.then(([userData]) => {
+  profileAvatar.src = userData.avatar;
+  profileName.textContent = userData.name;
+  profileDescription.textContent = userData.about;
+  personId = userData._id;
+})
+.catch(err => console.log(err));
 
 
 popupList.forEach ((item) => {
@@ -37,22 +50,31 @@ cardAddButton.addEventListener('click', function() {
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault(); 
-  const newPlaceImageValue = newPlaceImage.value;
-  const newPlaceTitleValue = newPlaceTitle.value;
-  const newCard = createCard(newPlaceImageValue, newPlaceTitleValue);
-  addCard(newCard);
+  renderLoading(true, cardAddForm);
+  updateCard(newPlaceTitle.value, newPlaceImage.value)
+.then(newCard => {
+  renderCards([newCard]);
   closePopup(popupAddCard);
   evt.target.reset();
+})
+.catch(err => console.log(err))
+.finally(() => renderLoading(false, cardAddForm));
 };
 
 formEditProfile.addEventListener('submit', handleEditProfileFormSubmit);
 
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault(); 
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = jobInput.value;
-  closePopup(popupEditProfile);
-  evt.target.reset();
+  renderLoading(true, formEditProfile);
+  updateUserData(nameInput.value, jobInput.value)
+  .then(newData => {
+    profileName.textContent = newData.name;
+    profileDescription.textContent = newData.about;
+    closePopup(popupEditProfile);
+    evt.target.reset();
+  })
+  .catch(err => console.log(err))
+  .finally(() => renderLoading(false, formEditProfile));
 };
 
 enableValidation({
@@ -63,3 +85,5 @@ enableValidation({
   inputErrorClass: 'form__item_error',
   errorClass: 'form__error_active'
 });
+
+export { personId }

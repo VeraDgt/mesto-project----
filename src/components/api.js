@@ -1,40 +1,103 @@
-const initialCards = [];
+import { renderLoading } from './utils.js'
 
-// fetch('https://nomoreparties.co/v1/plus-cohort-25/users/me', {
-//   headers: {
-//     authorization: '93cf6edd-b0e6-426e-82f8-64302cc26990'
-//   }
-// })
-// .then(res => res.json())
-//   .then((res) => {
-//     console.log(res);
-//   })
-//   .catch((err) => {
-//     console.log('Ошибка. Запрос не выполнен: ', err);
-//   });
+const config = {
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-25', 
+  headers: {
+    authorization: '93cf6edd-b0e6-426e-82f8-64302cc26990',
+    'Content-Type': 'application/json'
+  }
+}
 
-  fetch('https://nomoreparties.co/v1/plus-cohort-25/cards', {
-    headers: {
-      authorization: '93cf6edd-b0e6-426e-82f8-64302cc26990'
+const getUserData = () => {
+  return fetch(`${config.baseUrl}/users/me`, {
+    headers: config.headers
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Что-то пошло не так: ${res.status}`);
     }
   })
-    .then(res => {
-      if (res.ok) {
-        if (res.headers.get('Content-Type').contains('application/json')) {
-        return res.json();
-        }
-      }
-      return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    })
-    .then((cards) => {
-      cards.forEach((card) => {
-        initialCards.push(card.link, card.name);
-        JSON.stringify(initialCards);
-        return initialCards;
-      });
-    })
-    .catch((err) => {
-      console.log('Ошибка. Запрос не выполнен: ', err);
-    });
+};
 
-  export { initialCards };
+const getInitialCards = () => {
+  return fetch(`${config.baseUrl}/cards`, {
+    headers: config.headers
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+      } else {
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      }
+    })
+  };
+
+const updateUserData = (uName, description) => {
+  return fetch(`${config.baseUrl}/users/me`, {
+    headers: config.headers,
+    method: "PATCH",
+    body: JSON.stringify({
+      name: uName,
+      about: description
+    })
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+      } else {
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      }
+    })
+}
+
+const updateCard = (cardName, cardlink) => {
+  return fetch(`${config.baseUrl}/cards`, {
+    headers: config.headers,
+    method: "POST",
+    body: JSON.stringify({
+      name: cardName,
+      link: cardlink
+    })
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+      } else {
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      }
+    })
+};
+
+const setHeart = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    headers: config.headers,
+    method: "PUT",
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+      } else {
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      }
+    })
+};
+
+const removeHeart = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    headers: config.headers,
+    method: "DELETE",
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+      } else {
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      }
+    })
+};
+
+
+
+export { getUserData, getInitialCards, updateUserData, updateCard, setHeart, removeHeart }
