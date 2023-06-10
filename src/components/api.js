@@ -98,6 +98,36 @@ const removeHeart = (cardId) => {
     })
 };
 
+const deleteCard = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+    headers: config.headers,
+    method: "DELETE",
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+      } else {
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      }
+    })
+};
+
+const updateAvatar = (newAvatar) => {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    headers: config.headers,
+    method: "PATCH",
+    body: JSON.stringify({
+      avatar: newAvatar
+    })
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+      } else {
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      }
+    })
+};
 
 
-export { getUserData, getInitialCards, updateUserData, updateCard, setHeart, removeHeart }
+export { getUserData, getInitialCards, updateUserData, updateCard, setHeart, removeHeart, deleteCard, updateAvatar }

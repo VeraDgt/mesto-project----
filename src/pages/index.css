@@ -64,8 +64,10 @@
 @import url(../blocks/card/__heart-icon/card__heart-icon.css);
 @import url(../blocks/card/__heart-icon/_checked/card__heart-icon_checked.css);
 @import url(../blocks/card/__delete-button/card__delete-button.css);
+@import url(../blocks/card/__delete-button/_hidden/card__delete-button_hidden.css);
 @import url(../blocks/card/__heart-wrapper/card__heart-wrapper.css);
 @import url(../blocks/card/__hearts-number/card__hearts-number.css);
+
 
 /*footer*/
 @import url(../blocks/footer/footer.css);

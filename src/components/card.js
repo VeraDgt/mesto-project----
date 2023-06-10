@@ -1,6 +1,6 @@
 import { openPopup } from './modal.js';
 import { popupImage, cardsContainer, cardTemplate, popupImageImg, popupImageCaption } from './constants.js';
-import { getInitialCards, setHeart, removeHeart } from './api.js';
+import { getInitialCards, setHeart, removeHeart, deleteCard } from './api.js';
 import { personId } from '../index.js';
 
 
@@ -9,6 +9,14 @@ Promise.all([getInitialCards()])
   renderCards(initialCards);
 })
 .catch(err => console.log(err));
+
+function removeCard(card, cardId) {
+  deleteCard(cardId)
+  .then(() => {
+    card.remove();
+  })
+  .catch(err => console.log(err));
+}
 
 function toggleHeart(heartIcon, heartsCount, cardId) {
   if (heartIcon.classList.contains('card__heart-icon_checked')) {
@@ -50,8 +58,13 @@ function createCard(link, name, cardId, ownerId, likes) {
   heartsCount.textContent = `${likes.length}`;
 
   heartIcon.addEventListener('click', () => toggleHeart(heartIcon, heartsCount, cardId));
+
+if (ownerId !== personId) {
+  trashIcon.classList.add('card__delete-button_hidden');
+}
+
   trashIcon.addEventListener('click', () => {
-    newCard.remove();
+    removeCard(newCard, cardId);
   });
   cardImage.addEventListener('click', function() {
   popupImageImg.src = link;

@@ -3,7 +3,7 @@ import { enableValidation } from './components/validate.js';
 import { openPopup, closePopup,clickOnOverlayHandler } from './components/modal.js';
 import { renderCards } from './components/card.js';
 import { profileEditButton, profileName, profileDescription, popupEditProfile, nameInput, jobInput, popupAddCard, avatarEditButton, popupEditAvatar, newAvatar, profileAvatar, newPlaceTitle, newPlaceImage, formEditAvatar, cardAddForm, cardAddButton, formEditProfile, popupList } from './components/constants.js';
-import { getUserData, updateUserData, updateCard } from './components/api.js';
+import { getUserData, updateUserData, updateCard, updateAvatar } from './components/api.js';
 import { renderLoading } from './components/utils.js';
 
 let personId = "";
@@ -36,10 +36,16 @@ profileEditButton.addEventListener('click', function() {
 
 function handleEditAvatarFormSubmit(evt) {
   evt.preventDefault(); 
-  const newAvatarLink = newAvatar.value;
-  profileAvatar.style.backgroundImage = `url(${newAvatarLink})`;
-  closePopup(popupEditAvatar);
-  evt.target.reset();
+  renderLoading(true, formEditAvatar);
+  updateAvatar(newAvatar.value)
+  .then(res => {
+    const newAvatarLink = res.avatar;
+    profileAvatar.style.backgroundImage = `url(${newAvatarLink})`;
+    closePopup(popupEditAvatar);
+    evt.target.reset();
+  })
+  .catch(err => console.log(err))
+  .finally(() => renderLoading(false, formEditAvatar));
   };
 
 cardAddForm.addEventListener('submit', handleAddCardFormSubmit);
