@@ -1,14 +1,7 @@
 import { openPopup } from './modal.js';
 import { popupImage, cardsContainer, cardTemplate, popupImageImg, popupImageCaption } from './constants.js';
-import { getInitialCards, setHeart, removeHeart, deleteCard } from './api.js';
+import { setHeart, removeHeart, deleteCard } from './api.js';
 import { personId } from '../index.js';
-
-
-Promise.all([getInitialCards()])
-.then(([initialCards]) => {
-  renderCards(initialCards);
-})
-.catch(err => console.log(err));
 
 function removeCard(card, cardId) {
   deleteCard(cardId)
@@ -80,7 +73,7 @@ function addCard(newCard) {
 };
 
 function renderCards(cards) {
-  cards.forEach(function (el) {
+  cards.reverse().forEach(function (el) {
   el.newCard = createCard(el.link, el.name, el._id, el.owner._id, el.likes);
   addCard(el.newCard);
 });

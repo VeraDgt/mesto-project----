@@ -1,10 +1,20 @@
-function renderLoading(isLoading, formElement) {
-  const button = formElement.querySelector('.form__button');
+function renderLoading(isLoading, button, buttonText='Сохранить', loadingText='Сохранение...') {
   if (isLoading) {
-    button.textContent = "Сохранение...";
+    button.textContent = loadingText;
   } else {
-    button.textContent = "Сохранить";
+    button.textContent = buttonText;
   }
-}
+};
 
-export { renderLoading }
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  } 
+  return Promise.reject(`Что-то пошло не так: ${res.status}`);
+};
+
+function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+};
+
+export { renderLoading, request }

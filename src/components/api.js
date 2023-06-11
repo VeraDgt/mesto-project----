@@ -1,4 +1,4 @@
-import { renderLoading } from './utils.js'
+import { request } from './utils.js'
 
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-25', 
@@ -9,124 +9,68 @@ const config = {
 }
 
 const getUserData = () => {
-  return fetch(`${config.baseUrl}/users/me`, {
+  return request(`${config.baseUrl}/users/me`, {
     headers: config.headers
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    }
-  })
+  });
 };
 
 const getInitialCards = () => {
-  return fetch(`${config.baseUrl}/cards`, {
+  return request(`${config.baseUrl}/cards`, {
     headers: config.headers
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-      } else {
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
-      }
-    })
-  };
+  });
+};
 
 const updateUserData = (uName, description) => {
-  return fetch(`${config.baseUrl}/users/me`, {
+  return request(`${config.baseUrl}/users/me`, {
     headers: config.headers,
     method: "PATCH",
     body: JSON.stringify({
       name: uName,
       about: description
     })
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-      } else {
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
-      }
-    })
-}
+  });
+};
 
 const updateCard = (cardName, cardlink) => {
-  return fetch(`${config.baseUrl}/cards`, {
+  return request(`${config.baseUrl}/cards`, {
     headers: config.headers,
     method: "POST",
     body: JSON.stringify({
       name: cardName,
       link: cardlink
     })
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-      } else {
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
-      }
-    })
+  });
 };
 
 const setHeart = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+  return request(`${config.baseUrl}/cards/likes/${cardId}`, {
     headers: config.headers,
     method: "PUT",
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-      } else {
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
-      }
-    })
+  });
 };
 
 const removeHeart = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+  return request(`${config.baseUrl}/cards/likes/${cardId}`, {
     headers: config.headers,
     method: "DELETE",
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-      } else {
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
-      }
-    })
+  });
 };
 
 const deleteCard = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+  return request(`${config.baseUrl}/cards/${cardId}`, {
     headers: config.headers,
     method: "DELETE",
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-      } else {
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
-      }
-    })
+  });
 };
 
 const updateAvatar = (newAvatar) => {
-  return fetch(`${config.baseUrl}/users/me/avatar`, {
+  return request(`${config.baseUrl}/users/me/avatar`, {
     headers: config.headers,
     method: "PATCH",
     body: JSON.stringify({
       avatar: newAvatar
     })
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-      } else {
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
-      }
-    })
+  });
 };
 
 

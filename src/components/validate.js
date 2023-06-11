@@ -4,7 +4,10 @@ const enableValidation = (config) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
       const button = formElement.querySelector(config.submitButtonSelector);
-      setSubmitButtonState(false, button, config);
+      const item = formElement.querySelector(config.inputSelector);
+      if (item) {
+        setSubmitButtonState(false, button, config);
+      }
     });
     setEventListeners(formElement, config);
   });
