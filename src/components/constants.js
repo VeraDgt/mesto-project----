@@ -58,6 +58,6 @@ const newPlaceImage = cardAddForm.link;
 const cardAddButton = profile.querySelector('.profile__add-button');
 const popupList = Array.from(document.querySelectorAll('.popup'));
 const popupDeleteCard = document.querySelector('#popup_delete-card');
-const fromDeleteCard = document.forms.delete;
+const formDeleteCard = document.forms.delete;
 
-export { initialCards, popupImage, cardsContainer, cardTemplate, popupImageImg, popupImageCaption, profileEditButton, profileName, profileDescription, popupEditProfile, nameInput, jobInput, buttonsClosePopups, popupAddCard, avatarEditButton, popupEditAvatar, newAvatar, profileAvatar, newPlaceTitle, newPlaceImage, formEditAvatar, cardAddForm, cardAddButton, formEditProfile, popupList, popupDeleteCard,fromDeleteCard };
+export { initialCards, popupImage, cardsContainer, cardTemplate, popupImageImg, popupImageCaption, profileEditButton, profileName, profileDescription, popupEditProfile, nameInput, jobInput, buttonsClosePopups, popupAddCard, avatarEditButton, popupEditAvatar, newAvatar, profileAvatar, newPlaceTitle, newPlaceImage, formEditAvatar, cardAddForm, cardAddButton, formEditProfile, popupList, popupDeleteCard, formDeleteCard };

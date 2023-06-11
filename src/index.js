@@ -102,4 +102,4 @@ enableValidation({
   errorClass: 'form__error_active'
 });
 
-export { personId }
+export { personId, handleSubmit }

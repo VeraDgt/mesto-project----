@@ -1,15 +1,46 @@
-import { openPopup } from './modal.js';
-import { popupImage, cardsContainer, cardTemplate, popupImageImg, popupImageCaption } from './constants.js';
+import { closePopup, openPopup } from './modal.js';
+import { popupImage, cardsContainer, cardTemplate, popupImageImg, popupImageCaption, popupDeleteCard, formDeleteCard } from './constants.js';
 import { setHeart, removeHeart, deleteCard } from './api.js';
-import { personId } from '../index.js';
+import { personId, handleSubmit } from '../index.js';
 
-function removeCard(card, cardId) {
-  deleteCard(cardId)
-  .then(() => {
-    card.remove();
-  })
-  .catch(err => console.log(err));
-}
+// function removeCard(card, cardId) {
+//   deleteCard(cardId)
+//   .then(() => {
+//     card.remove();
+//   })
+//   .catch(err => console.log(err));
+// };
+
+
+
+function confirmCardDelete (card, cardId) {
+  openPopup(popupDeleteCard);
+  popupDeleteCard.querySelector('.form__button').addEventListener('click', () => {
+    processCardDelete(card, cardId)
+  });
+  // formDeleteCard.addEventListener('submit', 
+  // handleCardDeleteSubmit);
+};
+
+function handleCardDeleteSubmit(evt) {
+  function makeRequest() {
+    return processCardDelete
+  };
+  handleSubmit(makeRequest, evt);
+};
+
+function processCardDelete(card, cardId) {
+  // return handleCardDeleteSubmit()
+  // .then (
+    deleteCard(cardId)
+    // )
+    .then(() => {
+      card.remove();
+      handleCardDeleteSubmit
+      // closePopup(popupDeleteCard);
+    })
+    .catch(err => console.log(err));
+  };
 
 function toggleHeart(heartIcon, heartsCount, cardId) {
   if (heartIcon.classList.contains('card__heart-icon_checked')) {
@@ -57,7 +88,7 @@ if (ownerId !== personId) {
 }
 
   trashIcon.addEventListener('click', () => {
-    removeCard(newCard, cardId);
+    confirmCardDelete(newCard, cardId);
   });
   cardImage.addEventListener('click', function() {
   popupImageImg.src = link;
