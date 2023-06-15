@@ -11,36 +11,33 @@ import { personId, handleSubmit } from '../index.js';
 //   .catch(err => console.log(err));
 // };
 
-
-
 function confirmCardDelete (card, cardId) {
+  const cardToDelete = document.querySelector('.card[data-del="true"]');
+  if (cardToDelete) {
+    cardToDelete.removeAttribute('data-del');
+  }
+  card.dataset.del = 'true';
+  card.dataset.id = cardId;
   openPopup(popupDeleteCard);
-  popupDeleteCard.querySelector('.form__button').addEventListener('click', () => {
-    processCardDelete(card, cardId)
-  });
-  // formDeleteCard.addEventListener('submit', 
-  // handleCardDeleteSubmit);
 };
 
 function handleCardDeleteSubmit(evt) {
+  const cardToDelete = document.querySelector('.card[data-del="true"]');
   function makeRequest() {
-    return processCardDelete
+    if (cardToDelete) {
+      const cardToDeleteId = cardToDelete.dataset.id;
+      return deleteCard(cardToDeleteId)
+      .then(() => {
+        cardToDelete.remove();
+      })
+      .catch(err => console.log(err));
+    };
   };
   handleSubmit(makeRequest, evt);
 };
 
-function processCardDelete(card, cardId) {
-  // return handleCardDeleteSubmit()
-  // .then (
-    deleteCard(cardId)
-    // )
-    .then(() => {
-      card.remove();
-      handleCardDeleteSubmit
-      // closePopup(popupDeleteCard);
-    })
-    .catch(err => console.log(err));
-  };
+formDeleteCard.addEventListener('submit', 
+  handleCardDeleteSubmit);
 
 function toggleHeart(heartIcon, heartsCount, cardId) {
   if (heartIcon.classList.contains('card__heart-icon_checked')) {
