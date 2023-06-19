@@ -1,4 +1,4 @@
-import { closePopup, openPopup } from './modal.js';
+import { openPopup } from './modal.js';
 import { popupImage, cardsContainer, cardTemplate, popupImageImg, popupImageCaption, popupDeleteCard, formDeleteCard } from './constants.js';
 import { setHeart, removeHeart, deleteCard } from './api.js';
 import { personId, handleSubmit } from '../index.js';

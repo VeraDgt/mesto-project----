@@ -18,7 +18,6 @@ Promise.all([getUserData(), getInitialCards()])
 })
 .catch(err => console.log(err));
 
-
 popupList.forEach ((item) => {
   item.addEventListener('click', clickOnOverlayHandler);
 });
@@ -92,6 +91,8 @@ function handleEditProfileFormSubmit(evt) {
   };
   handleSubmit(makeRequest, evt);
 };
+
+
 
 enableValidation({
   formSelector: '.form',
